@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1{
+  text-align: center;
+}
+
+.main{
+  text-align: center;
+  margin-top: 5%;
+}
+
+.search_bar input{
+  display: block;
+  width: 15%;
+  margin: 20px auto;
+  height: 20px;
+}
+
+span{
+  padding: 0.2%;
+}
