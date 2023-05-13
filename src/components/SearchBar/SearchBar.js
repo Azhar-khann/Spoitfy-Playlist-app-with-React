@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Track from '../Track/Track';
 import Tracklist from "../Tracklist/Tracklist";
 
 function SearchBar(props){
@@ -20,6 +19,7 @@ function SearchBar(props){
             id:2
         }
     ]
+    const [newlist, setnewlist] = useState(tracklist);
 
     function submit(){
         setshowTrack(true);
@@ -27,11 +27,15 @@ function SearchBar(props){
 
     return (
         <div className ="main"> 
+        
             <div className="Search_bar">      
-            <input type="text" placeholder="Search.." name="search"/>
+            <input className="Search_bar_input" type="text" placeholder="Search.." name="search"/>
             <button type = "submit" onClick={submit}>Search</button>
             </div>
-            {showTrack && <Tracklist tracklist = {tracklist}/>}
+
+            {showTrack && <Tracklist tracklist = {newlist}/>}
+
+           
         </div>
     )
 

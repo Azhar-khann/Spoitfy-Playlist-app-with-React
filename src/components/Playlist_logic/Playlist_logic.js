@@ -1,15 +1,26 @@
-import React from "react";
-import Playlist from "../Playlist/Playlist"
+import React, { useState } from "react";
+import Playlist from "../Playlist/Playlist";
+
+
 
 function Playlist_logic(props){
-    let id_track = []
-    if (id_track.includes(props.track.id) === false){
-        id_track.push(props.id)
-        return <Playlist track = {props.track}/>
+    console.log(props.playlist_tracklist)
+ 
+
+    function remove_track(track){
+        props.remove_track(track)
         
-    } else{
-        return alert('Track has been added')
     }
+
+
+    return (
+        <ul>
+            {props.playlist_tracklist.map(track =>
+                <Playlist trackObject = {track} remove_track = {remove_track}/>)}
+        </ul>
+    )
+        
+        
 }
 
 export default Playlist_logic;

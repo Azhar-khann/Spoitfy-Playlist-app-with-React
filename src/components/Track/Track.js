@@ -1,28 +1,29 @@
 import React, {useState} from 'react';
-import Playlist_logic from '../Playlist_logic/Playlist_logic';
+
 
 
 function Track(props){
 
-    const [showTrack, setshowTrack] = useState(false);
-
-    function submit(){
-        setshowTrack(true);
+    function Submit(e){
+        props.addToPlaylist(props.trackObject);
+        props.handleplaylist(props.trackObject)
     }
 
     return(
-        
+
         <li> 
-            <h1>{props.trackObject.name}</h1>  
+
+            <h2>{props.trackObject.name}</h2>  
             <span>{props.trackObject.artist}</span> |
             <span>{props.trackObject.album}</span> 
-            <button type ="submit" onClick = {submit}> add </button> 
-            return {showTrack && <Playlist_logic track = {props.trackObject}/>}
+            <button className='add_remove' type ="submit" onClick = {Submit} value={props.trackObject}> add </button> 
+            <hr></hr>
+
         </li>
-        
-    
+                   
     )
     
 }
 
 export default Track;
+

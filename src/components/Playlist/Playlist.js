@@ -1,14 +1,22 @@
 import React from "react";
 
+
 function Playlist(props){
+
+    function handleClick(){
+        props.remove_track(props.trackObject)
+    }
 
     return(
 
-        <li> <h1>{props.track.name}</h1>  
-            <span>{props.track.artist}</span> |
-            <span>{props.track.album}</span> 
-        </li>
+        <li>
+             <h2>{props.trackObject.name}</h2>  
+            <span>{props.trackObject.artist}</span> |
+            <span>{props.trackObject.album}</span> 
+            <button className='add_remove' type ="submit" onClick = {handleClick} > remove </button> 
+            <hr></hr>
 
+        </li>
 
     )
 }
