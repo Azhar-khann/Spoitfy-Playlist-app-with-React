@@ -14,10 +14,14 @@ function Playlist_logic(props){
 
 
     return (
-        <ul>
+
+        <div>
+            <ul>
             {props.playlist_tracklist.map(track =>
                 <Playlist trackObject = {track} remove_track = {remove_track}/>)}
-        </ul>
+            </ul>
+
+        </div>
     )
         
         

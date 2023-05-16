@@ -47,9 +47,12 @@ function Tracklist(props){
                 <hr className="playlist_line"></hr>
 
                 {showTrack && <Playlist_logic  playlist_tracklist = {playlist_tracklist} remove_track ={remove_track}/>}
+                <div>
+                    <button type="submit" id="add_to_playlist">Submit</button>
+                </div>
+
 
             </div>
-
 
 
         </div>
