@@ -20,6 +20,7 @@ h1{
 
 h2{
   width:45%;
+  font-size: 15px;
 }
 
 .main{
@@ -32,10 +33,11 @@ h2{
   width: 15%;
   margin: 20px auto;
   height: 20px;
-}
+} 
 
 span{
   padding: 0.2%;
+  font-size: 12px;
 }
 
 .Results{
@@ -49,20 +51,21 @@ span{
   margin-top: 8%;
 }
 
-.Playlist,
+/* .Playlist,
 .SearchResults{
   width:30%;
   border: 3px solid rgb(66, 65, 65);
-  border-radius: 2%;
-}
+  
+} */
 
+.add_remove{
+  margin:10px 10px;
+}
 span{
   padding: 3.2%;
 }
 
-.add_remove{
-  margin-left: 20%;
-}
+
 
 .Playlist input{
   width:90%;
@@ -74,4 +77,8 @@ span{
 
 .playlist_line{
   margin:0;
+}
+
+#add_to_playlist{
+  margin:10% 40%;
 }
