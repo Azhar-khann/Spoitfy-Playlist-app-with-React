@@ -12,7 +12,7 @@ function App() {
 
   const [showTrack, setshowTrack] = useState(false);
   const[tracklist,setTracklist] = useState(null);
-  const[user_token,set_user_token] = useState(null);
+  const[user_token,set_user_token] = useState('');
 
   //let ggtoken = ''
 /* 
@@ -35,23 +35,34 @@ function App() {
 
   }*/
 
-  async function results(input){
+  function url_token(){
+    if (user_token === '' || user_token === null){
+      const Url = window.location.hash.substring(1);
+      const urlParams = new URLSearchParams(Url);
+      const token = urlParams.get('access_token');
+      //console.log('token=',token)np
+      set_user_token(token)
+      
+      //console.log('usertoken=',user_token)
+    }
 
-    const Url = window.location.hash.substring(1);
-    const urlParams = new URLSearchParams(Url);
-    const token = urlParams.get('access_token');
+  }
 
-    window.history.replaceState({}, document.title, window.location.pathname);
+  function results(input){
 
-    const set_token = set_user_token(token)
-    console.log('token=',token)
+    
+
     console.log('input=',input)
-    search(token,input).then( list => {
+    console.log(user_token)
+    search(user_token,input).then( list => {
 
       setTracklist(list)
       setshowTrack(true);
+      window.history.replaceState({}, document.title, window.location.pathname);
 
     })
+
+    
     
     
   }
@@ -61,7 +72,7 @@ function App() {
 
     <div>
       <h1>Jamming</h1>
-      <Searchbar search = {results} />
+      <Searchbar search = {results} user_token={user_token} url_token ={url_token}/>
       {showTrack && <Tracklist tracklist = {tracklist}/>} 
     </div>
     
