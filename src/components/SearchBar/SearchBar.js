@@ -19,7 +19,7 @@ function SearchBar(props){
 
     if (props.user_token === '' || props.user_token === null){
         props.url_token()
-        console.log('usertoken 1=',props.user_token)
+        //console.log('usertoken 1=',props.user_token)
         return (
         <div className ="main"> 
         
@@ -38,7 +38,7 @@ function SearchBar(props){
         )
 
     } else{
-        console.log('usertoken 2=',props.user_token)
+        //console.log('usertoken 2=',props.user_token)
         return (
             <div className ="main"> 
             

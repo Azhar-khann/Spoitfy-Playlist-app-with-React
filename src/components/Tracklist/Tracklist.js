@@ -7,6 +7,7 @@ function Tracklist(props){
     
     const [showTrack, setshowTrack] = useState(false);
     const[playlist_tracklist,set] = useState([]);
+    const [inputValue, setInputValue] = useState('');
 
     function AddToPlaylist(e){
         setshowTrack(true);
@@ -23,6 +24,19 @@ function Tracklist(props){
         const updatedList = playlist_tracklist.filter((listItem) => listItem !== track);
         set(updatedList);
         
+    }
+
+    function handlename(event){
+        setInputValue(event.target.value);
+    }
+
+    function add_playlist(){
+     
+        const uri_array = []
+        for (let i = 0; i <= playlist_tracklist.length-1;i++){
+            uri_array.push(playlist_tracklist[i].uri)
+        }
+        props.playlist(inputValue,uri_array)
     }
 
     
@@ -43,12 +57,12 @@ function Tracklist(props){
 
             <div className="Playlist">
 
-                <input type = "text" name="playlist_name"/>
+                <input type = "text" name="playlist_name" placeholder="Name Your Playlist.." onChange={handlename}/>
                 <hr className="playlist_line"></hr>
 
                 {showTrack && <Playlist_logic  playlist_tracklist = {playlist_tracklist} remove_track ={remove_track}/>}
                 <div>
-                    <button type="submit" id="add_to_playlist">Submit</button>
+                    <button type="submit" id="add_to_playlist" onClick={add_playlist}>Submit</button>
                 </div>
 
 
