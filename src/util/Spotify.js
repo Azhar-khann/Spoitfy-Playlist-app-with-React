@@ -102,17 +102,17 @@ async function get_user_id(token){
     return user_id
 }
 
-async function create_playlist(){
-    const token = 'BQD0zJFG4j6Jo4oIKstspNMvFUFFdUucHCOQR5FmtyCFrgdWmJO6s11bXR3As-ieNFybfJ3GWyk2NE8i3jNXDOVtnNXO2xyXbVBrpgcfwZEl55w-Zv5NoGHXAVbd-0DHag8B6cZ1KFn2m2XJ4sqY1xOnZnbY6_TMTMXJuqq95tveAtXGWdIfb8893mLAlFtl0M49IsXagTzpbbtA5Y96ZL64WIfmYwIKuxS_XEyKBBwcSykcfA';
-    const id = '31z4ue7ge54fln2tdysnaazmf4qa';
+async function create_playlist(token,user_id,name){
+
     
     const playlistData = {
-        name: 'first Playlist',
+        name: name,
         description: 'New playlist description',
         public: true
     };
+    let playlist_id = ''
 
-    await fetch(`https://api.spotify.com/v1/users/${id}/playlists`, {
+    await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
         method: 'POST',
         headers: {'Authorization': 'Bearer' + ' ' + token, 'Content-Type': 'application/json'},
         body: JSON.stringify(playlistData)
@@ -121,6 +121,7 @@ async function create_playlist(){
 
     .then(data => {
         console.log(data);
+        playlist_id = data.id
 
     })
     .catch(error => {
@@ -128,46 +129,38 @@ async function create_playlist(){
 
     });
 
+    console.log(playlist_id)
+    return playlist_id
 }
 
-async function Save_playlist(user_id){
+async function add_tracks_to_playlist(token, playlist_id,tracks){
 
+    //console.log('uris=',tracks)
+    const data = {
+        uris: tracks,
+        position: 0
+    };
 
-    const playlist = {"uris":["spotify:track:5dntGTbUtmUO239wQ0k3yM",
-    "spotify:track:0lnxrQAd9ZxbhBBe7d8FO8",
-    "spotify:track:2n3CaPGPLYnYAvTEwKCX8t",
-
-    "spotify:track:7GLqR9ToJLb0PV3XyNAWNm"]}
-
-    //const user_id = '31b2nuoszj5sgz4u7cdcrgoryeum'
-    const name = "First Playlist"
-
-    await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
-
+    await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {
         method: 'POST',
-        headers: {'Authorization': 'Bearer' + ' ' +  'BQAaZ2E8si5xvqAr7YYClmT8SUsQBCWkGP2fAI83uzh6fSRu_QXwdsmCOE-HjPSBtaQhVD5GBIJgXJ4s0uy6ieLFMtvUX0mBOJT3Qt-fYVkw7WNrJas3'},
-        body:  {"name": "First Playlist"}
-
-    })
-    .then(async response =>{
-
-        if (response.ok){
-            const jsonResponse =  await response.json();
-            console.log(jsonResponse)
-            return jsonResponse
-        }
-        throw new Error('Request failed yes!')
-    })
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
 }
 
-/* const token = 'BQAaZ2E8si5xvqAr7YYClmT8SUsQBCWkGP2fAI83uzh6fSRu_QXwdsmCOE-HjPSBtaQhVD5GBIJgXJ4s0uy6ieLFMtvUX0mBOJT3Qt-fYVkw7WNrJas3'
-console.log(token.slice(0,116)) */
-
-/* for (let i = 0;i<token.length;i++){
-    console.log(i,token[i])*/
 
 
-module.exports= {access_token:access_token , search: search};
+module.exports= {access_token:access_token , search: search, get_user_id: get_user_id, create_playlist:create_playlist, add_tracks_to_playlist:add_tracks_to_playlist};
 
 //console.log(access_token())
 //console.log(Save_playlist())

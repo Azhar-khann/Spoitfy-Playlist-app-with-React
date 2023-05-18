@@ -4,7 +4,7 @@ import Playlist from "../Playlist/Playlist";
 
 
 function Playlist_logic(props){
-    console.log(props.playlist_tracklist)
+    //console.log(props.playlist_tracklist)
  
 
     function remove_track(track){
