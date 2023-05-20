@@ -12,18 +12,36 @@ function App() {
 
   const [showTrack, setshowTrack] = useState(false);
   const[tracklist,setTracklist] = useState(null);
-  const[user_token,set_user_token] = useState('');
+  let [storedToken,setstoredToken] = useState(localStorage.getItem('spotifyToken'));
+  console.log('storedtoken=',storedToken)
 
+  const issuanceTime = parseInt(localStorage.getItem('spotifyTokenIssuedAt'));
+
+  if (storedToken && issuanceTime) {
+    const currentTime = Math.floor(Date.now() / 1000); // Convert to seconds
+
+    if (currentTime - issuanceTime >= 3600) {
+      access_token().then(token => {
+        localStorage.setItem('spotifyToken',token)
+      })
+      localStorage.setItem('spotifyTokenIssuedAt', Date.now());
+    }
+  }
+  
 
   function url_token(){
-    if (user_token === '' || user_token === null){
+
+    if (storedToken === '' || storedToken === 'null' || storedToken === null){
       const Url = window.location.hash.substring(1);
       const urlParams = new URLSearchParams(Url);
       const token = urlParams.get('access_token');
-      //console.log('token=',token)
-      set_user_token(token)
       
-      //console.log('usertoken=',user_token)
+      localStorage.setItem('spotifyToken', token)
+      localStorage.setItem('spotifyTokenIssuedAt', Date.now());
+
+      setstoredToken(localStorage.getItem('spotifyToken'))
+      window.history.replaceState({}, document.title, window.location.pathname);
+
     }
 
   }
@@ -31,12 +49,11 @@ function App() {
   function results(input){
 
     //console.log('input=',input)
-    //console.log(user_token)
-    search(user_token,input).then( list => {
+    search(storedToken,input).then( list => {
 
       setTracklist(list)
       setshowTrack(true);
-      window.history.replaceState({}, document.title, window.location.pathname);
+      //window.history.replaceState({}, document.title, window.location.pathname);
 
     })    
     
@@ -44,9 +61,9 @@ function App() {
 
   function playlist(name,tracks){
 
-    get_user_id(user_token).then(id =>{
-      create_playlist(user_token,id,name).then(playlist_id =>{
-        add_tracks_to_playlist(user_token,playlist_id,tracks)
+    get_user_id(storedToken).then(id =>{
+      create_playlist(storedToken,id,name).then(playlist_id =>{
+        add_tracks_to_playlist(storedToken,playlist_id,tracks)
       })
 
     })
@@ -58,7 +75,7 @@ function App() {
 
     <div>
       <h1>Jamming</h1>
-      <Searchbar search = {results} user_token={user_token} url_token ={url_token}/>
+      <Searchbar search = {results} url_token ={url_token}/>
       {showTrack && <Tracklist tracklist = {tracklist} playlist = {playlist}/>} 
     </div>
     

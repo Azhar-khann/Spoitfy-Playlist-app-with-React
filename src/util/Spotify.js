@@ -29,12 +29,12 @@ async function access_token() {
     )
     .then(data =>{
         getToken = data.access_token;
-        console.log('get=',getToken)
+        //console.log('get=',getToken)
     }) 
     
     .catch(error => console.log(error)); 
 
-    console.log('get=',getToken)
+    //console.log('get=',getToken)
     return getToken
 }    
 
@@ -75,7 +75,7 @@ async function search(token,query){
 
         }
     })
-    console.log(tracks)
+    //console.log(tracks)
     return tracks
 
 }
@@ -120,7 +120,7 @@ async function create_playlist(token,user_id,name){
     .then(response => response.json())
 
     .then(data => {
-        console.log(data);
+        //console.log(data);
         playlist_id = data.id
 
     })
@@ -129,7 +129,7 @@ async function create_playlist(token,user_id,name){
 
     });
 
-    console.log(playlist_id)
+    //console.log(playlist_id)
     return playlist_id
 }
 
@@ -151,7 +151,7 @@ async function add_tracks_to_playlist(token, playlist_id,tracks){
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          //console.log(data);
         })
         .catch(error => {
           console.error(error);

@@ -9,7 +9,7 @@ function SearchBar(props){
 
     function submit(event){
         event.preventDefault();
-        console.log(inputValue)
+        //console.log(inputValue)
         props.search(inputValue);
     }  
 
@@ -17,9 +17,9 @@ function SearchBar(props){
         setInputValue(event.target.value);
     }
 
-    if (props.user_token === '' || props.user_token === null){
+    if (localStorage.getItem('spotifyToken') === '' || localStorage.getItem('spotifyToken') === 'null' || localStorage.getItem('spotifyToken') === null){
         props.url_token()
-        //console.log('usertoken 1=',props.user_token)
+        //console.log('usertoken 1=',localStorage.getItem('spotifyToken'))
         return (
         <div className ="main"> 
         
@@ -38,7 +38,6 @@ function SearchBar(props){
         )
 
     } else{
-        //console.log('usertoken 2=',props.user_token)
         return (
             <div className ="main"> 
             
@@ -59,7 +58,3 @@ function SearchBar(props){
 
 export default SearchBar;
 
-
-/*             <input className="Search_bar_input" id="input" type="text" placeholder="Search.." name="searchInput"/>
-            <input type="submit" id="submit" onClick={submit} /> */
-            
