@@ -83,7 +83,6 @@ async function search(token,query){
 async function get_user_id(token){
     
     let user_id = ''
-
     await fetch('https://api.spotify.com/v1/me', {
         method: 'GET',
         headers: {'Authorization': 'Bearer' + ' ' + token}
@@ -91,7 +90,7 @@ async function get_user_id(token){
     .then(response => response.json())
 
     .then(data => {
-        //console.log(data.id);
+        console.log(data.id);
         user_id = data.id
 
     })
@@ -101,6 +100,8 @@ async function get_user_id(token){
 
     return user_id
 }
+
+
 
 async function create_playlist(token,user_id,name){
 
@@ -164,6 +165,6 @@ module.exports= {access_token:access_token , search: search, get_user_id: get_us
 
 //console.log(access_token())
 //console.log(Save_playlist())
-//console.log(search())
+//console.log(search("BQBA6ruP9_JoiVbfOQkiUVDUnliaAGcHBgfZwL9Kjqx66VG_OwSXH3OGI-u6zyj06sPwWkk1rw73pIo9UHMc6eLYG3aZxn-nchh9BOzTK7R9Ky2H5NI",'trampoline'))
 //console.log(get_user_id())
 //console.log(create_playlist())
