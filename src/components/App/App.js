@@ -16,39 +16,42 @@ function App() {
   console.log('storedtoken=',storedToken)
 
   const issuanceTime = parseInt(localStorage.getItem('spotifyTokenIssuedAt'));
+  console.log('issuance time=',issuanceTime)
 
-  if (storedToken && issuanceTime) {
-    const currentTime = Math.floor(Date.now() / 1000); // Convert to seconds
-
-    if (currentTime - issuanceTime >= 3600) {
-      access_token().then(token => {
-        localStorage.setItem('spotifyToken',token)
-      })
-      localStorage.setItem('spotifyTokenIssuedAt', Date.now());
-    }
-  }
   
 
   function url_token(){
 
-    if (storedToken === '' || storedToken === 'null' || storedToken === null){
+    //if (storedToken === '' || storedToken === 'null' || storedToken === null){
       const Url = window.location.hash.substring(1);
       const urlParams = new URLSearchParams(Url);
       const token = urlParams.get('access_token');
       
       localStorage.setItem('spotifyToken', token)
-      localStorage.setItem('spotifyTokenIssuedAt', Date.now());
+      localStorage.setItem('spotifyTokenIssuedAt', Math.floor(Date.now() / 1000));
 
       setstoredToken(localStorage.getItem('spotifyToken'))
       window.history.replaceState({}, document.title, window.location.pathname);
 
-    }
+    //}
 
+  }
+
+  if (storedToken && issuanceTime) {
+    const currentTime = Math.floor(Date.now() / 1000); // Convert to seconds
+    console.log('current time=',currentTime)
+
+    if (currentTime - issuanceTime >= 3600) {
+      console.log('expried token')
+      url_token()
+      //localStorage.setItem('spotifyTokenIssuedAt', Math.floor(Date.now() / 1000));
+    }
   }
 
   function results(input){
 
     //console.log('input=',input)
+    
     search(storedToken,input).then( list => {
 
       setTracklist(list)
@@ -60,7 +63,7 @@ function App() {
   }
 
   function playlist(name,tracks){
-
+    
     get_user_id(storedToken).then(id =>{
       create_playlist(storedToken,id,name).then(playlist_id =>{
         add_tracks_to_playlist(storedToken,playlist_id,tracks)
