@@ -46,17 +46,21 @@ async function search(token,query){
     //let uris = []
 
     const searchQuery = query
+    console.log(token)
     await fetch(`https://api.spotify.com/v1/search?q=${searchQuery}&type=track`,{
 
-        headers: {'Authorization': 'Bearer' + ' ' +  token}
+        headers: {'Authorization': 'Bearer' + ' ' +  token},
+        
 
     })
+
     .then( async response =>{
         if(response.ok){
-        const jsonResponse = await response.json();
-        return jsonResponse
+            const jsonResponse = await response.json();
+            
+            return jsonResponse
         }
-        throw new Error('Request failed!')
+        //throw new Error('Request failed!')
     }) 
     .then(data => { 
 
@@ -75,7 +79,7 @@ async function search(token,query){
 
         }
     })
-    //console.log(tracks)
+    console.log(tracks)
     return tracks
 
 }

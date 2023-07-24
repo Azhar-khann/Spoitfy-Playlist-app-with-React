@@ -10,8 +10,8 @@ import { search, get_user_id, create_playlist, add_tracks_to_playlist} from '../
 
 function App() {
 
-  const [showTrack, setshowTrack] = useState(false);
-  const[tracklist,setTracklist] = useState(null);
+  //const [showTrack, setshowTrack] = useState(false);
+  const[tracklist,setTracklist] = useState([]);
   let [storedToken,setstoredToken] = useState(localStorage.getItem('spotifyToken'));
   console.log('storedtoken=',storedToken)
 
@@ -55,7 +55,7 @@ function App() {
     search(storedToken,input).then( list => {
 
       setTracklist(list)
-      setshowTrack(true);
+      //setshowTrack(true);
       //window.history.replaceState({}, document.title, window.location.pathname);
 
     })    
@@ -79,7 +79,7 @@ function App() {
     <div>
       <h1>Jamming</h1>
       <Searchbar search = {results} url_token ={url_token}/>
-      {showTrack && <Tracklist tracklist = {tracklist} playlist = {playlist}/>} 
+      {<Tracklist tracklist = {tracklist} playlist = {playlist}/>} 
     </div>
     
   );

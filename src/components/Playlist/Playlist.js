@@ -13,7 +13,7 @@ function Playlist(props){
              <h2>{props.trackObject.name}</h2>  
             <span>{props.trackObject.artist}</span> |
             <span>{props.trackObject.album}</span> 
-            <button className='add_remove' type ="submit" onClick = {handleClick} > remove </button> 
+            <button className='add_remove' type ="submit" onClick = {handleClick} >Cut </button> 
             <hr></hr>
 
         </li>

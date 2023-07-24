@@ -46,18 +46,17 @@ function Tracklist(props){
             <div className="SearchResults">
 
                 <h1>Results</h1>
+                <hr className="Results_line"></hr>
                 <ul>
                     {props.tracklist.map(track =>
-                        <Track trackObject = {track} addToPlaylist = {AddToPlaylist} handleplaylist = {handlePlaylist} />)}
-                        
-                                          
+                        <Track trackObject = {track} addToPlaylist = {AddToPlaylist} handleplaylist = {handlePlaylist} />)}                               
                 </ul>
 
             </div>
 
             <div className="Playlist">
 
-                <input type = "text" name="playlist_name" placeholder="Name Your Playlist.." onChange={handlename}/>
+                <input type = "text" name="playlist_name" placeholder="Name your Playlist" onChange={handlename}/>
                 <hr className="playlist_line"></hr>
 
                 {showTrack && <Playlist_logic  playlist_tracklist = {playlist_tracklist} remove_track ={remove_track}/>}

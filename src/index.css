@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #171616;
  
 }
 
@@ -15,12 +16,26 @@ code {
 
 h1{
   text-align: center;
+  font-size: 50px;
   
+  color: #05d005;
+  font-weight: lighter;
+}
+
+.SearchResults h1{
+  color:white;
+  font-size: 40px;
+  text-align: left;
+  font-family: 'Roboto';
+  margin-left: 6%;
+  margin-bottom: 4%
 }
 
 h2{
   width:45%;
-  font-size: 15px;
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
 }
 
 .main{
@@ -30,14 +45,21 @@ h2{
 
 .Search_bar input{
   display: block;
-  width: 15%;
+  width: 250px;
   margin: 20px auto;
-  height: 20px;
+  height: 45px;
+  background-color: #1c1d1c;
+  border-radius: 24px;
+  border: 0.5px solid white;
+  padding-left: 2%;
+  color:white;
+  font-size: 16px;
 } 
 
 span{
   padding: 0.2%;
-  font-size: 12px;
+  font-size: 14px;
+  color: white;
 }
 
 .Results{
@@ -59,26 +81,218 @@ span{
 } */
 
 .add_remove{
-  margin:10px 10px;
+  width: 10%;
+  height: 25px;
+  margin: 10px 10px;
+  background-color: #07cd07;
+  border: 0px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bolder;
+  cursor: pointer;
 }
+
+
+
 span{
-  padding: 3.2%;
+  padding: 1.2%;
 }
 
 
 
 .Playlist input{
   width:90%;
-  height: 30px;
+  height: 75px;
   margin-right: 8%;
   border:none;
-  font-size: 22px;
+  font-size: 24px;
+  width: 94%;
+  border-radius: 28px;
+  background-color: #171616;
+  border: 0px;
+  padding-left: 5%;
+  color: white;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-.playlist_line{
-  margin:0;
+.Playlist input::placeholder {
+  color: rgb(94, 92, 92); /* Replace #ff0000 with your desired color code */
+  font-size: 20px;
+}
+
+.playlist_line,
+.Results_line{
+  margin-top: 0;
+  margin-bottom: 7%;
+
 }
 
 #add_to_playlist{
-  margin:10% 40%;
+  margin: 10% 40%;
+  height: 36px;
+  background-color: #07cd07;
+  border: 0px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: light;
+  width: 16.5%;
+  cursor: pointer;
+}
+
+.Search_bar button{
+  width:100px;
+  height: 37px;
+  border:0px;
+  border-radius: 35px;
+  background-color: #0bd10b;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 1.5%;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+li{
+  color: white;
+}
+
+.SearchResults{
+  border: 1px solid white;
+  border-radius: 24px;
+  width:35%;
+}
+
+.Playlist{
+  border: 1px solid white;
+  border-radius: 24px;
+  width:35%;
+}
+
+input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1200px) and (min-width:800px) {
+  .Search_bar input{
+    width:240px
+  }
+  
+  .SearchResults,
+  .Playlist {
+    border: 1px solid white;
+    border-radius: 24px;
+    width: 40%;
+  }
+
+  .SearchResults h1{
+    font-size: 34px;
+  }
+
+  h2{
+    font-size: 18px;
+  }
+
+  span{
+    font-size: 13px;
+  }
+
+  .add_remove {
+    width:45px;
+    font-size: 13px;
+  }
+
+  #add_to_playlist {
+    width:88px;
+  }
+
+}
+
+@media screen and (max-width:799px) {
+
+  .Search_bar input{
+    width:220px
+  }
+
+  .Search_bar button{
+    width:85px;
+    height:34px;
+    margin-top: 3%;
+  }
+  .SearchResults,
+  .Playlist {
+    border: 1px solid white;
+    width: 40%;
+  }
+
+  .SearchResults h1{
+    font-size: 34px;
+  }
+
+  h2{
+    font-size: 18px;
+  }
+
+  span{
+    font-size: 13px;
+  }
+
+  .add_remove {
+    width:45px;
+    font-size: 13px;
+  }
+
+  #add_to_playlist {
+    width:78px;
+    margin: 10% 37%;
+  }
+
+  .flex_box{
+    margin-top: 15%;
+  }
+
+}
+
+@media screen and (max-width:600px) {
+  .flex_box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+
+  .SearchResults,
+  .Playlist {
+    width: 80%;
+    margin-bottom: 15%;
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+    border-radius: 24px;
+  }
+
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(2, 173, 2);
+    border-radius: 30px;
+    background-position-x: left;
+  }
+
+  
+  .SearchResults h1 {
+    font-size: 29px;
+  }
+
+  .Playlist input {
+    height: 58px;
+  }
+  h2 {
+    font-size: 17px;
+  }
 }
