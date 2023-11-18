@@ -27,7 +27,7 @@ function SearchBar(props){
 
 
                 <input className="Search_bar_input" type="text" placeholder="Search.." onChange={handleChange}/>
-                <a href = 'https://accounts.spotify.com/authorize?response_type=token&client_id=368150b868984cf686e852f56b5d5b6f&scope=user-read-private user-read-email playlist-modify-public&redirect_uri=http://localhost:58490/'>
+                <a href = 'https://accounts.spotify.com/authorize?response_type=token&client_id=368150b868984cf686e852f56b5d5b6f&scope=user-read-private user-read-email playlist-modify-public&redirect_uri=http://localhost:3000/'>
                      <button type="submit" >Search</button> 
                 </a>
               
